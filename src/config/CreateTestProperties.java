@@ -26,7 +26,7 @@ public class CreateTestProperties {
 		output = new FileOutputStream("testProperties");
  
 		// set properties based on what will be tested.
-                // these values are set to pass by default and should be set while testing
+                // these values are set to pass by default and can be changed while testing
                 prop.setProperty("numFloors", numFloors);
                 prop.setProperty("numElevators", numElevators);
 		prop.setProperty("simTime", simTime);
