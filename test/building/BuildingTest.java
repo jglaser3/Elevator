@@ -144,7 +144,7 @@ public class BuildingTest {
      */
     @Test
     public void testGetStartingFloor() throws InvalidDataException {
-        System.out.println("testing getStartingFloor using valid parameter ...");
+        System.out.println("testing getStartingFloor using valid parameter...");
         CreateTestProperties prop = new CreateTestProperties();
         prop.setStartingFloor("16");
         prop.writePropFile();
@@ -156,71 +156,100 @@ public class BuildingTest {
 
     /**
      * Test of getNumFloors method, of class Building.
+     * @throws util.InvalidDataException
      */
     @Test
-    public void testGetNumFloors() {
-        System.out.println("testing getNumFloors");
-        Building instance = null;
-        int expResult = 0;
+    public void testGetNumFloors() throws InvalidDataException {
+        System.out.println("testing getNumFloors using valid parameter...");
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.writePropFile();
+        Building instance = new Building("testProperties", true);;
+        int expResult = 16;
         int result = instance.getNumFloors();
-        assertEquals(expResult, result);
+        assertEquals("testing getNumFloors using default parameter = 16", expResult, result);
     }
 
     /**
      * Test of setNumFloors method, of class Building.
      */
     @Test
-    public void testSetNumFloors() throws Exception {
-        System.out.println("testing setNumFloors");
-        int numFloors = 0;
-        Building instance = null;
-        instance.setNumFloors(numFloors);
+    public void testSetNumFloorsError() {
+        System.out.println("testing InvalidDataException for setNumFloors...");
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.setNumFloors("1");
+        prop.writePropFile();
+        Building instance;
+        try {
+            instance = new Building("testProperties", true);
+        } catch (InvalidDataException ex) {
+            assertEquals("testing invalid data error for setNumFloors", 
+                    "Not enough percentages for each floor", ex.getMessage());
+        }
     }
 
     /**
      * Test of setSimTime method, of class Building.
      */
     @Test
-    public void testSetSimTime() throws Exception {
-        System.out.println("testing setSimTime");
-        int simulationTime = 0;
-        Building instance = null;
-        instance.setSimTime(simulationTime);
+    public void testSetSimTimeError(){
+        System.out.println("testing InvalidDataException for setSimTime...");
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.setsimTime("0");
+        prop.writePropFile();
+        Building instance;
+        try {
+            instance = new Building("testProperties", true);
+        } catch (InvalidDataException ex) {
+            assertEquals("testing invalid data error for setsimTime", 
+                    "The simulation time  must be in range: 1 - 2147483647", ex.getMessage());
+        }
     }
 
     /**
      * Test of getSimTime method, of class Building.
+     * @throws util.InvalidDataException
      */
     @Test
-    public void testGetSimTime() {
-        System.out.println("testing getSimTime");
-        Building instance = null;
-        int expResult = 0;
+    public void testGetSimTime() throws InvalidDataException {
+        System.out.println("testing getSimTime using valid parameter");
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.writePropFile();
+        Building instance = new Building("testProperties", true);
+        int expResult = 1;
         int result = instance.getSimTime();
-        assertEquals(expResult, result);
+        assertEquals("test of getSimTime using valid parameter = 1", expResult, result);
     }
 
     /**
      * Test of getDoorOperationTime method, of class Building.
+     * @throws util.InvalidDataException
      */
     @Test
-    public void testGetDoorOperationTime() {
-        System.out.println("testing getDoorOperationTime");
-        Building instance = null;
-        int expResult = 0;
+    public void testGetDoorOperationTime() throws InvalidDataException {
+        System.out.println("testing getDoorOperationTime with valid parameter...");
+        Building instance = new Building("testProperties", true);
+        int expResult = 1;
+        instance.setDoorOperationTime(expResult);
         int result = instance.getDoorOperationTime();
-        assertEquals(expResult, result);
+        assertEquals("test of getDoorOperationTime using valid parameter = 1", expResult, result);
     }
 
     /**
      * Test of setDoorOperationTime method, of class Building.
      */
     @Test
-    public void testSetDoorOperationTime() throws Exception {
+    public void testSetDoorOperationTimeError(){
         System.out.println("testing setDoorOperationTime");
-        int doorOperationTime = 0;
-        Building instance = null;
-        instance.setDoorOperationTime(doorOperationTime);
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.writePropFile();
+        Building instance;
+        try {
+            instance = new Building("testProperties", true);
+            instance.setDoorOperationTime(0);
+        } catch (InvalidDataException ex) {
+            assertEquals("testing invalid data error for setsimTime", 
+                    "doorOperationTime  must be in range: 1 - 2147483647", ex.getMessage());
+        }
     }
 
     /**
@@ -229,7 +258,9 @@ public class BuildingTest {
     @Test
     public void testGetScale() {
         System.out.println("testing getScale");
-        Building instance = null;
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.writePropFile();
+        Building instance = new Building("testProperties", true);
         int expResult = 0;
         int result = instance.getScale();
         assertEquals(expResult, result);
@@ -239,10 +270,12 @@ public class BuildingTest {
      * Test of setScale method, of class Building.
      */
     @Test
-    public void testSetScale() throws Exception {
+    public void testSetScale(){
         System.out.println("testing setScale");
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.writePropFile();
         int scale = 0;
-        Building instance = null;
+        Building instance = new Building("testProperties", true);
         instance.setScale(scale);
     }
 
@@ -252,7 +285,9 @@ public class BuildingTest {
     @Test
     public void testGetTravelTime() {
         System.out.println("testing getTravelTime");
-        Building instance = null;
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.writePropFile();
+        Building instance = new Building("testProperties", true);
         int expResult = 0;
         int result = instance.getTravelTime();
         assertEquals(expResult, result);
@@ -262,10 +297,12 @@ public class BuildingTest {
      * Test of setTravelTime method, of class Building.
      */
     @Test
-    public void testSetTravelTime() throws Exception {
+    public void testSetTravelTime(){
         System.out.println("testing setTravelTime");
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.writePropFile();
         int travelTime = 0;
-        Building instance = null;
+        Building instance = new Building("testProperties", true);
         instance.setTravelTime(travelTime);
     }
 
@@ -275,7 +312,7 @@ public class BuildingTest {
     @Test
     public void testGetMaxPeople() {
         System.out.println("testing getMaxPeople");
-        Building instance = null;
+        Building instance = new Building("testProperties", true);
         int expResult = 0;
         int result = instance.getMaxPeople();
         assertEquals(expResult, result);
@@ -285,10 +322,12 @@ public class BuildingTest {
      * Test of setMaxPeople method, of class Building.
      */
     @Test
-    public void testSetMaxPeople() throws Exception {
+    public void testSetMaxPeople() {
         System.out.println("testing setMaxPeople");
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.writePropFile();
         int maxPeople = 0;
-        Building instance = null;
+        Building instance = new Building("testProperties", true);
         instance.setMaxPeople(maxPeople);
     }
 
@@ -298,8 +337,10 @@ public class BuildingTest {
     @Test
     public void testGetSpawnRateByFloor() {
         System.out.println("testing getSpawnRateByFloor");
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.writePropFile();
         int i = 0;
-        Building instance = null;
+        Building instance = new Building("testProperties", true);
         int expResult = 0;
         int result = instance.getSpawnRateByFloor(i);
         assertEquals(expResult, result);
@@ -307,12 +348,15 @@ public class BuildingTest {
 
     /**
      * Test of setSpawnRateByFloor method, of class Building.
+     * @throws util.InvalidDataException
      */
     @Test
-    public void testSetSpawnRateByFloor() throws Exception {
+    public void testSetSpawnRateByFloor() throws InvalidDataException {
         System.out.println("testing setSpawnRateByFloor");
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.writePropFile();
         int[] spawnRateByFloor = null;
-        Building instance = null;
+        Building instance = new Building("testProperties", true);
         instance.setSpawnRateByFloor(spawnRateByFloor);
     }
 
@@ -322,7 +366,9 @@ public class BuildingTest {
     @Test
     public void testRun() {
         System.out.println("run");
-        Building instance = null;
+        CreateTestProperties prop = new CreateTestProperties();
+        prop.writePropFile();
+        Building instance = new Building("testProperties", true);
         instance.run();
     }
     
