@@ -1,0 +1,9 @@
+#Tue May 27 00:30:03 CDT 2014
+startingFloor=1
+maxPeople=10
+simTime=120
+numElevators=4
+numFloors=16
+numPeopleCreatedPerMin=2
+scale=2
+travelTime=1000
