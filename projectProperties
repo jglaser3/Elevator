@@ -1,9 +1,9 @@
-#Tue May 27 22:07:37 CDT 2014
+#Wed May 28 17:49:21 CDT 2014
 startingFloor=1
 maxPeople=10
-simTime=120
+simTime=300
 numElevators=4
 numFloors=16
-numPeopleCreatedPerMin=2
+numPeopleCreatedPerMin=15
 scale=2
 travelTime=1000
