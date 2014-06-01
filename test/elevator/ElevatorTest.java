@@ -8,6 +8,8 @@ package elevator;
 
 import Panel.ElevatorPanel;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -47,11 +49,17 @@ public class ElevatorTest {
      * @throws util.InvalidDataException
      */
     @Test
-    public void testAddDestination() throws InvalidDataException {
-        System.out.println("testing addDestination");
-        int destination = 0;
-        Elevator instance = new ElevatorImpl(0, 0);
-        instance.addDestination(destination);
+    public void testAddDestinationError(){
+        System.out.println("testing InvalidDataException for addDestination");
+        int destination = -1;
+        Elevator instance;
+        try {
+            instance = new ElevatorImpl(0, 16);
+            instance.addDestination(destination);
+        } catch (InvalidDataException ex) {
+            assertEquals("testing invalid data error for setStartingFloor", 
+                    "Floor number must be a non-zero positive integer.", ex.getMessage());
+        }
     }
 
     /**

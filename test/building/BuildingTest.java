@@ -113,7 +113,6 @@ public class BuildingTest {
         } catch (InvalidDataException ex) {
             assertEquals("testing invalid data error for setNumElevators", 
                     "Not enough percentages for each floor", ex.getMessage());
-            Logger.getLogger(BuildingTest.class.getName()).log(Level.SEVERE, null, ex);
         }       
     }
 
@@ -134,7 +133,6 @@ public class BuildingTest {
         } catch (InvalidDataException ex) {
             assertEquals("testing invalid data error for setStartingFloor", 
                     "Floor must be in range: 1 - 16", ex.getMessage());
-            Logger.getLogger(BuildingTest.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
 

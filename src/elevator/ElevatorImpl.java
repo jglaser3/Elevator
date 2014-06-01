@@ -17,7 +17,7 @@ import static elevator.Elevator.*;
  *
  * @author Raphael Shejnberg
  */
-public class ElevatorImpl implements Elevator, Runnable {
+public final class ElevatorImpl implements Elevator, Runnable {
     
     /**
      * The thread for an elevator.
@@ -30,7 +30,7 @@ public class ElevatorImpl implements Elevator, Runnable {
      * 
      * @see #getPassengers() getPassengers()
      */
-    private ArrayList<Person> passengers;
+    private final ArrayList<Person> passengers;
     
     /**
      * The status of an elevator, active or idle.
@@ -95,12 +95,13 @@ public class ElevatorImpl implements Elevator, Runnable {
      * 
      * @see #getPanel() getPanel()
      */
-    private ElevatorPanel panel;
+    private final ElevatorPanel panel;
     /**
      * This is the Constructor.
      * 
      * @param EID - elevator ID
      * @param topFloor - top floor an elevator can reach
+     * @throws util.InvalidDataException
      */
     public ElevatorImpl(int EID,int topFloor) throws InvalidDataException {
         
@@ -117,6 +118,7 @@ public class ElevatorImpl implements Elevator, Runnable {
     /**
      * Initializes a thread for an elevator.
      */
+    @Override
     public void initThread() {
         elevatorThread = new Thread(this);
         elevatorThread.setName("ElThread: "+ getID());
